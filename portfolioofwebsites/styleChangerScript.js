@@ -25,26 +25,31 @@ function panagramGenerator(){
 
 panagramGenerator();
 
-document.getElementById("button0").onclick = function () {
+document.getElementById("buttonGreen").onclick = function () {
   document.getElementById("jsPanagram0").style.color = 'green';
-  document.getElementById("jsPanagram0").style.font = "green 20px arial,serif";
-  document.getElementById("fontName").innerHTML = "<h3>Arial</h3>";
+}
+document.getElementById("buttonBlue").onclick = function () {
+  document.getElementById("jsPanagram0").style.color = 'blue';
+}
+document.getElementById("buttonRed").onclick = function () {
+  document.getElementById("jsPanagram0").style.color = '#FF0000';
 }
 
-document.getElementById("button1").onclick = function () {
-  document.getElementById("jsPanagram0").style.color = 'blue';
+document.getElementById("buttonArial").onclick = function () {
+  document.getElementById("jsPanagram0").style.font = "20px Arial";
+  document.getElementById("fontName").innerHTML = "<h3>Arial</h3>";
+}
+document.getElementById("buttonGeorgia").onclick = function () {
   document.getElementById("jsPanagram0").style.font = "20px Georgia ";
   document.getElementById("fontName").innerHTML = "<h3>Georgia</h3>";
 }
-
-document.getElementById("button2").onclick = function () {
-  document.getElementById("jsPanagram0").style.color = '#FF0000';
-  document.getElementById("jsPanagram0").style.font = "20px Calibri ";
-  document.getElementById("fontName").innerHTML = "<h3>Calibri</h3>";
-}
-
-document.getElementById("button3").onclick = function () {
-  document.getElementById("jsPanagram0").style.color = '#000000';
+document.getElementById("buttonPapyrus").onclick = function () {
   document.getElementById("jsPanagram0").style.font = "20px papyrus";  
   document.getElementById("fontName").innerHTML = "<h3>Papyrus</h3>";
 }
+document.getElementById("buttonReset").onclick = function () {
+  document.getElementById("jsPanagram0").style.color = '#000000';
+  document.getElementById("jsPanagram0").style.font = "20px Helvetica";
+  document.getElementById("fontName").innerHTML = "<h3>Black Helvetica</h3>";
+}
+
