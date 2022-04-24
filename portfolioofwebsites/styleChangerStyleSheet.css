@@ -6,8 +6,7 @@ body{
 
 
 .hero-image {
-  background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),    background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),  
-    url("https://www.publicdomainpictures.net/pictures/290000/velka/rooster-vintage-banner.jpg");
+  background-image: url("rooster-vintage-banner.jpg");
   height: 50%;
   background-position: center;
   background-repeat: no-repeat;
@@ -22,7 +21,7 @@ body{
   left: 60%;
   transform: translate(-50%, -50%);
   color: #fff;
-  text-shadow: 3px 0 0 #000, 0 -3px 0 #000, 0 3px 0 #000, -3px 0 0 #000;
+  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }
 
 .container {
