@@ -6,7 +6,8 @@ body{
 
 
 .hero-image {
-  background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),  url("rooster-vintage-banner.jpg");
+  background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),    background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),  
+    url("https://www.publicdomainpictures.net/pictures/290000/velka/rooster-vintage-banner.jpg");;
   height: 50%;
   background-position: center;
   background-repeat: no-repeat;
