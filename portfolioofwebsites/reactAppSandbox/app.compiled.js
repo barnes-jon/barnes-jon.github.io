@@ -6,15 +6,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 var animals = exports.animals = {
   dolphin: {
-    image: '/images/dolphin.jpg',
+    image: 'images/dolphin.jpg',
     facts: ['Dolphins have been shown to give distinct names to each other!', 'Dolphins are known to display their own culture!', 'Dolphins have two stomachs!']
   },
   lobster: {
-    image: '/images/lobster.jpg',
+    image: 'images/lobster.jpg',
     facts: ['Lobsters taste with their legs!', 'Lobsters chew with their stomachs!', 'Lobsters can live as long as 100 years.']
   },
   starfish: {
-    image: '/images/starfish.jpg',
+    image: 'images/starfish.jpg',
     facts: ['Starfish can have up to 40 arms!', 'Starfish have no brain and no blood!', 'Starfish can regenerate their own arms!']
   }
 };
@@ -41,7 +41,7 @@ var showBackground = true;
 var background = _react2.default.createElement('img', {
   className: 'background',
   alt: 'ocean',
-  src: '/images/ocean.jpg'
+  src: 'images/ocean.jpg'
 });
 
 var images = [];
