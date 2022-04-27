@@ -6,19 +6,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 var animals = exports.animals = {
   petunia: {
-    image: '/images/dolphin.jpg',
+    image: 'https://freesvg.org/img/1549541158.png',
     facts: ['petunia loves food', 'petunia loves snuggles with her mom', 'petunia enjoys blowing bubbles in the water']
   },
   hank: {
-    image: '/images/lobster.jpg',
+    image: 'https://freesvg.org/img/1325710251.png',
     facts: ['hank is a sweetheart', 'hank loves savory food','hank really enjoys classical gas']
   },
   mabelline: {
-    image: '/images/lobster.jpg'',
+    image: 'https://freesvg.org/img/1409908930.png',
     facts: ['mabelline is the bravest pig', 'mabelline loves eggs', 'mabelline helps get daisy']
   },
   potatoe: {
-    image: '/images/270157362_359436139281607_4670004192799682639_n.jpeg',
+    image: 'https://freesvg.org/img/square-animal-3-pig.png',
     facts: ['potatoe loves eating grass', 'potatoe wakes up very early', 'potatoe loves her brother and sisters']
   }
 };
