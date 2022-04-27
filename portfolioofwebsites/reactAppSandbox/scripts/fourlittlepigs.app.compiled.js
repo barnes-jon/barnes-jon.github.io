@@ -14,11 +14,11 @@ var animals = exports.animals = {
     facts: ['hank is a sweetheart', 'hank loves savory food','hank really enjoys classical gas']
   },
   mabelline: {
-    image: 'https://scontent-sjc3-1.cdninstagram.com/v/t51.2885-15/269956177_137531585364995_3443264728112918611_n.jpg?stp=dst-jpg_e35_p640x640_sh0.08&_nc_ht=scontent-sjc3-1.cdninstagram.com&_nc_cat=111&_nc_ohc=ZDXG6WtbrZkAX9Uz7vU&edm=AABBvjUBAAAA&ccb=7-4&oh=00_AT-YMGtKXZuWTS5zIz0Wt9R_et7RMWoQXaQJKwzpHVQMzA&oe=627119EC&_nc_sid=83d603',
+    image: '/images/lobster.jpg'',
     facts: ['mabelline is the bravest pig', 'mabelline loves eggs', 'mabelline helps get daisy']
   },
   potatoe: {
-    image: 'https://scontent-sjc3-1.cdninstagram.com/v/t51.2885-15/270157362_359436139281607_4670004192799682639_n.jpg?stp=dst-jpg_e35_s640x640_sh0.08&_nc_ht=scontent-sjc3-1.cdninstagram.com&_nc_cat=107&_nc_ohc=nKpOSt5nBQ8AX8SWLlO&edm=AABBvjUBAAAA&ccb=7-4&oh=00_AT_E10LxupxjT6XL_AS6OxqINYw5Ha1XHbJZYqbdXJeSjQ&oe=62701AF6&_nc_sid=83d603',
+    image: '/images/270157362_359436139281607_4670004192799682639_n.jpeg',
     facts: ['potatoe loves eating grass', 'potatoe wakes up very early', 'potatoe loves her brother and sisters']
   }
 };
