@@ -18,7 +18,7 @@ var animals = exports.animals = {
     facts: ['mabelline is the bravest pig', 'mabelline loves eggs', 'mabelline helps get daisy']
   },
   potatoe: {
-    image: 'potatoe.png',
+    image: 'images/potatoe.png',
     facts: ['potatoe loves eating grass', 'potatoe wakes up very early', 'potatoe loves her brother and sisters']
   }
 };
