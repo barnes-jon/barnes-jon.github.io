@@ -32,8 +32,6 @@ div {
 
 .animal {
 	width: 25%;
-        position: absolute;
-        bottom: 0;
 }
 
 @media only screen and (max-width: 670px) {
