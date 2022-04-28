@@ -28,11 +28,12 @@ div {
 	width: 90%;
 	margin-top: 240px;
 	z-index: 2;
-  	bottom: 10%;
 }
 
 .animal {
 	width: 25%;
+        position: absolute;
+        bottom: 0;
 }
 
 @media only screen and (max-width: 670px) {
