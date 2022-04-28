@@ -6,19 +6,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 var animals = exports.animals = {
   petunia: {
-    image: 'https://freesvg.org/img/1549541158.png',
+    image: 'images/petunia.png',
     facts: ['petunia loves food', 'petunia loves snuggles with her mom', 'petunia enjoys blowing bubbles in the water']
   },
   hank: {
-    image: 'https://freesvg.org/img/1325710251.png',
+    image: 'images/hank.png',
     facts: ['hank is a sweetheart', 'hank loves savory food','hank really enjoys classical gas']
   },
   mabelline: {
-    image: 'https://freesvg.org/img/1409908930.png',
+    image: 'images/mabelline.png',
     facts: ['mabelline is the bravest pig', 'mabelline loves eggs', 'mabelline helps get daisy']
   },
   potatoe: {
-    image: 'https://freesvg.org/img/square-animal-3-pig.png',
+    image: 'potatoe.png',
     facts: ['potatoe loves eating grass', 'potatoe wakes up very early', 'potatoe loves her brother and sisters']
   }
 };
@@ -45,7 +45,7 @@ var showBackground = true;
 var background = _react2.default.createElement('img', {
   className: 'background',
   alt: 'ocean',
-  src: 'https://p2.piqsels.com/preview/737/288/33/barn-farm-autumn-fall.jpg'
+  src: 'images/barn-farm-autumn-fall.jpeg'
 });
 
 var images = [];
