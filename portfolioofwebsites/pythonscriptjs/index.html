@@ -5,6 +5,10 @@
  <title>Jon Barnes first Python Script .JS Site</title>
   
  <meta name="description" content="Pyscript.JS">
+ <py-env>
+  - numpy
+  - matplotlib
+</py-env>
  <link rel="stylesheet" href="styles.css">
   
   <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
@@ -32,17 +36,16 @@
         </py-script> 
        <p>no back to hmtl, and then back to python for a histogram</p>
        <py-script output="plot">
-import matplotlib.pyplot as plt
-import numpy as np
+        import matplotlib.pyplot as plt
+        import numpy as np
 
-np.random.seed(42)
+        np.random.seed(42)
 
-rv = np.random.standard_normal(1000)
+        rv = np.random.standard_normal(1000)
 
-fig, ax = plt.subplots()
-ax.hist(rv, bins=30)
-fig
-
+        fig, ax = plt.subplots()
+        ax.hist(rv, bins=30)
+        fig
     </py-script>
       </section>
 
