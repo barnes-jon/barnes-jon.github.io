@@ -34,5 +34,5 @@ def add_task(*ags, **kws):
   taskHtmlCheck.element.onclick = check_task
 
 def add_task_event(e):
-  if (e.key == "Enter"):
+  if (e.key == "enter"):
     add_task()
