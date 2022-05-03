@@ -10,99 +10,63 @@
     <script defer src="pyscript.js"></script>
     
     <py-env>
-      - rich
+      - os
       - random
-      - paths:
-        - words.py
+      - urllib 
+      - itertools
     </py-env>
   </head>
 
   <body class="container">
-<h1>Here is a Word guess game from Free Code Camp</h1>
-    <p><a href="https://www.freecodecamp.org/news/how-to-build-a-wordle-clone-using-python-and-rich/">link</a></p>
+<h1>Word guess game</h1>
+    <p><a href="https://github.com/SahilGupta1331/wordle/blob/main/main.py">link to Sahil Gupta Github</a></p>
     <p></p>
     
 <py-script>   
-from rich.prompt import Prompt
-from rich.console import Console
-from random import choice
-from words import word_list
+import os
+import random
+from urllib import request
+import itertools
 
-SQUARES = {
-    'correct_place': '🟩',
-    'correct_letter': '🟨',
-    'incorrect_letter': '⬛'
-}
+if not os.path.isfile('count_1w.txt'):
+    request.urlretrieve(
+        "https://norvig.com/ngrams/count_1w.txt",
+        "count_1w.txt")
 
-WELCOME_MESSAGE = f'\n[white on blue] WELCOME TO WORDLE [/]\n'
-PLAYER_INSTRUCTIONS = "You may start guessing\n"
-GUESS_STATEMENT = "\nEnter your guess"
-ALLOWED_GUESSES = 6
+with open('count_1w.txt') as file:
+    five_letter_words = list(itertools.islice((
+        word for word, _ in (line.strip().split('\t') for line in file)
+        if len(word) == 5), 10000))
 
-def correct_place(letter):
-    return f'[black on green]{letter}[/]'
+word = random.choice(five_letter_words)
+t = 5
 
-
-def correct_letter(letter):
-    return f'[black on yellow]{letter}[/]'
-
-
-def incorrect_letter(letter):
-    return f'[black on white]{letter}[/]'
-
-
-def check_guess(guess, answer):
-    guessed = []
-    wordle_pattern = []
-    for i, letter in enumerate(guess):
-        if answer[i] == guess[i]:
-            guessed += correct_place(letter)
-            wordle_pattern.append(SQUARES['correct_place'])
-        elif letter in answer:
-            guessed += correct_letter(letter)
-            wordle_pattern.append(SQUARES['correct_letter'])
-        else:
-            guessed += incorrect_letter(letter)
-            wordle_pattern.append(SQUARES['incorrect_letter'])
-    return ''.join(guessed), ''.join(wordle_pattern)
-
-
-def game(console, chosen_word):
-    end_of_game = False
-    already_guessed = []
-    full_wordle_pattern = []
-    all_words_guessed = []
-
-    while not end_of_game:
-        guess = Prompt.ask(GUESS_STATEMENT).upper()
-        while len(guess) != 5 or guess in already_guessed:
-            if guess in already_guessed:
-                console.print("[red]You've already guessed this word!!\n[/]")
-            else:
-                console.print('[red]Please enter a 5-letter word!!\n[/]')
-            guess = Prompt.ask(GUESS_STATEMENT).upper()
-        already_guessed.append(guess)
-        guessed, pattern = check_guess(guess, chosen_word)
-        all_words_guessed.append(guessed)
-        full_wordle_pattern.append(pattern)
-
-        console.print(*all_words_guessed, sep="\n")
-        if guess == chosen_word or len(already_guessed) == ALLOWED_GUESSES:
-            end_of_game = True
-    if len(already_guessed) == ALLOWED_GUESSES and guess != chosen_word:
-        console.print(f"\n[red]WORDLE X/{ALLOWED_GUESSES}[/]")
-        console.print(f'\n[green]Correct Word: {chosen_word}[/]')
+while True:
+    if t == 0:
+        print('You lost. Better luck next time!')
+        print('The word was ', word)
+        break
+    j = 0
+    guess = input('Guess the 5 letter word: ')
+    if guess == word:
+        print('🟩🟩🟩🟩🟩')
+        print('You Won!!!')
+        break
+    elif len(guess) == 5:
+        grid = {i: '⬛' for i in range(5)}
+        count = {i: 0 for i in set(guess)}
+        for i in guess:
+            count[i] += 1
+            if i == word[j]:
+                grid[j] = '🟩'
+            elif i in word and word.count(i) >= count[i]:
+                grid[j] = '🟨'
+            j += 1
+        print(''.join(grid.values()))
+        t -= 1
     else:
-        console.print(f"\n[green]WORDLE {len(already_guessed)}/{ALLOWED_GUESSES}[/]\n")
-    console.print(*full_wordle_pattern, sep="\n")
-
-
-if __name__ == '__main__':
-    console = Console()
-    chosen_word = choice(word_list)
-    console.print(WELCOME_MESSAGE)
-    console.print(PLAYER_INSTRUCTIONS)
-    game(console, chosen_word)
+        print('Give a valid 5 letter word.')
+    print('Total chances left: ', t)
     
      </py-script>
     </body>
