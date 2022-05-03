@@ -30,6 +30,20 @@
           for i in range(4):
             print('This is Python code from pyscript.js') 
         </py-script> 
+       <p>no back to hmtl, and then back to python for a histogram</p>
+       <py-script output="plot">
+import matplotlib.pyplot as plt
+import numpy as np
+
+np.random.seed(42)
+
+rv = np.random.standard_normal(1000)
+
+fig, ax = plt.subplots()
+ax.hist(rv, bins=30)
+fig
+
+    </py-script>
       </section>
 
       <section id="code--javascript">
