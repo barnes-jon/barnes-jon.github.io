@@ -18,7 +18,7 @@ const guessGrid = document.querySelector("[data-guess-grid]")
 const offsetFromDate = new Date(2022, 0, 1)
 const msOffset = Date.now() - offsetFromDate
 const dayOffset = msOffset / 1000 / 60 / 60 / 24
-const targetWord = targetWords[Math.floor(dayOffset)]
+const targetWord = "toner"
 
 startInteraction()
 
@@ -96,7 +96,7 @@ function submitGuess() {
     return word + tile.dataset.letter
   }, "")
 
-  if (!dictionary.includes(guess)) {
+  if (!targetWord) {
     showAlert("Not in word list")
     shakeTiles(activeTiles)
     return
