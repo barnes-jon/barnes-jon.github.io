@@ -2,7 +2,7 @@ var targetWords = new Array();
     
 function loadQuestions() {
     $.getJSON('targetWords.json', function (data) {
-        allWords = words;
+        targetWords = words;
     }).error(function(){
             console.log('error: json not loaded');
         });
