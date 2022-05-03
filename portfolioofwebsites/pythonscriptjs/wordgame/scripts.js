@@ -1,13 +1,3 @@
-var targetWords = new Array();
-    
-function loadQuestions() {
-    $.getJSON('targetWords.json', function (data) {
-        targetWords = words;
-    }).error(function(){
-            console.log('error: json not loaded');
-        });
-    });
-}
 
 const WORD_LENGTH = 5
 const FLIP_ANIMATION_DURATION = 500
