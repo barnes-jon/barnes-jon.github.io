@@ -1,5 +1,5 @@
-import { dictionary } from './dictionary.js'
-import { targetWords } from './targetWords.js'
+import { dictionary } from 'dictionary.js'
+import { targetWords } from 'targetWords.js'
 
 
 const WORD_LENGTH = 5
