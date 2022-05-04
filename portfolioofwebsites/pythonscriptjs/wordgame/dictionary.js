@@ -1,5 +1,5 @@
 
-export const dictionary = [
+const dictionary = [
   "aahed",
   "aalii",
   "aargh",
@@ -12973,3 +12973,5 @@ export const dictionary = [
   "rural",
   "shave",
 ];
+
+export default dictionary
