@@ -1,5 +1,5 @@
 
-const targetWords = [
+export default const targetWords = [
   "cigar",
   "rebut",
   "sissy",
@@ -2316,5 +2316,3 @@ const targetWords = [
   "rural",
   "shave",
 ];
-
-export default targetWords;
