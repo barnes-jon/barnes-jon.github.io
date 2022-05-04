@@ -2315,4 +2315,4 @@ export const targetWords = [
   "artsy",
   "rural",
   "shave",
-]
+];
