@@ -13,7 +13,7 @@ const msOffset = Date.now() - offsetFromDate
 const dayOffset = msOffset / 1000 / 60 / 60 / 24
 
 //added Math.random() so when I refresh I can play a new game
-const targetWord = targetWords[Math.floor(dayOffset * Math.random())] 
+const targetWord = targetWords[Math.floor(dayOffset * 0.7)] 
 
 startInteraction()
 
