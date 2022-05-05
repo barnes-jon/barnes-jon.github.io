@@ -17,7 +17,8 @@
 
   <body class="container">
     <!-- <py-repl id="my-repl" auto-generate="true"> </py-repl> -->
-  <py-script src="todo.py">  </py-script>
+  <py-script src="todo-test-home.py">  </py-script>
+  <py-script src="todo-test-work.py">  </py-script>
 
   <main class="max-w-xs mx-auto mt-4">
     <section>
@@ -28,8 +29,8 @@
       
     <div>
       <h2>Home To Do list</h2>
-      <input id="new-task-content" class="border flex-1 mr-3 border-gray-300 p-5 rounded" type="text">
-      <button id="new-task-btn" class="p-2 text-white bg-blue-600 border border-blue-600 rounded" type="submit" pys-onClick="add_task">
+      <input id="new-task-content-home" class="border flex-1 mr-3 border-gray-300 p-5 rounded" type="text">
+      <button id="new-task-btn-home" class="p-2 text-white bg-blue-600 border border-blue-600 rounded" type="submit" pys-onClick="add_task">
         Add task
       </button>
       <py-list id="myListHome"></py-list>
@@ -38,8 +39,8 @@
       
    <div>   
       <h2>Work To Do list</h2>
-      <input id="new-task-content" class="border flex-1 mr-3 border-gray-300 p-2 rounded" type="text">
-      <button id="new-task-btn" class="p-2 text-white bg-blue-600 border border-blue-600 rounded" type="submit" pys-onClick="add_task">
+      <input id="new-task-content-work" class="border flex-1 mr-3 border-gray-300 p-2 rounded" type="text">
+      <button id="new-task-btn-work" class="p-2 text-white bg-blue-600 border border-blue-600 rounded" type="submit" pys-onClick="add_task">
         Add task
       </button>
     </div>
