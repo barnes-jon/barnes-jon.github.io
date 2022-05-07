@@ -6,13 +6,26 @@
  <meta name="description" content="p5 clock demo">
  <link rel="stylesheet" href="styles/clock--styles.css">
  <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
+ 
+         <script>
+            function setup(){
+                var canvas = createCanvas(400, 400);
+                canvas.parent('canvasForHTML');
+            }
+            
+            function draw(){
+                background(127);
+            }
+        </script>
+ 
 </head>
   <header>
   </header>
   
   <div class="hero">
     <h1>It is a clock</h1>
-    <iframe src="http://p5js.org/test/embed.html" width="600px" height="400px"></iframe>
+    <div id="canvasForHTML"></div>
+   <p>that was the clock</p>
   </div>
   
   <footer>
