@@ -3,35 +3,24 @@
 <head>
  <meta charset="utf-8">
   <title>Clock Demo</title>
- <meta name="description" content="p5 clock demo">
- <link rel="stylesheet" href="styles/clock--styles.css">
- <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
- 
-         <script>
-            function setup(){
-                var canvas = createCanvas(400, 400);
-                canvas.parent('canvasForHTML');
-            }
-            
-            function draw(){
-                background(127);
-            }
-        </script>
- 
+  <meta name="description" content="p5 clock demo">
+  <link rel="stylesheet" href="styles/clock--styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
 </head>
+ 
+<body>
   <header>
   </header>
   
   <div class="hero">
     <h1>It is a clock</h1>
-    <div id="canvasForHTML"></div>
+    <script src="clock--scripts.js"></script>
    <p>that was the clock</p>
   </div>
   
   <footer>
     <span class='tagline'>Site Under Construction</span>
   </footer>
-  <script src="clock--scripts.js"></script>
+  
 </body>
 </html>
-<body>
