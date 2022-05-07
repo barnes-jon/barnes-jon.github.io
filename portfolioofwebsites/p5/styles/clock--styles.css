@@ -1,7 +1,7 @@
-body {
-  background-color: #B8B8B8;
+#title{
+  text-align: center;
 }
 
-iframe{ 
-  border: none; 
-} 
+.aboutP5js {
+  text-align: center;
+}
