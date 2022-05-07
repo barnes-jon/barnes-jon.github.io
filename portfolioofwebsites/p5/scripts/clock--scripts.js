@@ -1,3 +1,63 @@
+let christmasDay = new Date(2022, 11, 25)
+const countToDate = christmasDay
+//const countToDate = new Date().setHours(new Date().getHours() + christmasDay)
+let previousTimeBetweenDates
+setInterval(() => {
+  const currentDate = new Date()
+  const timeBetweenDates = Math.ceil((countToDate - currentDate) / 1000)
+  flipAllCards(timeBetweenDates)
+
+  previousTimeBetweenDates = timeBetweenDates
+}, 250)
+
+function flipAllCards(time) {
+  const seconds = time % 60
+  const minutes = Math.floor(time / 60) % 60
+  const hours = Math.floor(time / 3600) % 24
+  const days = Math.floor(time/(3600*24) )
+  
+  flip(document.querySelector("[data-days-hundreds]"), Math.floor(days / 100) )
+  flip(document.querySelector("[data-days-tens]"), Math.floor(days/10 % 10))
+  flip(document.querySelector("[data-days-ones]"), days % 10)
+  flip(document.querySelector("[data-hours-tens]"), Math.floor(hours / 10))
+  flip(document.querySelector("[data-hours-ones]"), hours % 10)
+  flip(document.querySelector("[data-minutes-tens]"), Math.floor(minutes / 10))
+  flip(document.querySelector("[data-minutes-ones]"), minutes % 10)
+  flip(document.querySelector("[data-seconds-tens]"), Math.floor(seconds / 10))
+  flip(document.querySelector("[data-seconds-ones]"), seconds % 10)
+}
+
+function flip(flipCard, newNumber) {
+  const topHalf = flipCard.querySelector(".top")
+  const startNumber = parseInt(topHalf.textContent)
+  if (newNumber === startNumber) return
+
+  const bottomHalf = flipCard.querySelector(".bottom")
+  const topFlip = document.createElement("div")
+  topFlip.classList.add("top-flip")
+  const bottomFlip = document.createElement("div")
+  bottomFlip.classList.add("bottom-flip")
+
+  topHalf.textContent = startNumber
+  bottomHalf.textContent = startNumber
+  topFlip.textContent = startNumber
+  bottomFlip.textContent = newNumber
+
+  topFlip.addEventListener("animationstart", e => {
+    topHalf.textContent = newNumber
+  })
+  topFlip.addEventListener("animationend", e => {
+    topFlip.remove()
+  })
+  bottomFlip.addEventListener("animationend", e => {
+    bottomHalf.textContent = newNumber
+    bottomFlip.remove()
+  })
+  flipCard.append(topFlip, bottomFlip)
+}
+
+//--------------------------------------
+
 let cx, cy;
 let secondsRadius;
 let minutesRadius;
@@ -59,7 +119,7 @@ function draw() {
   // Draw the minute ticks
   strokeWeight(1);
   beginShape(POINTS);
-  for (let a = 0; a < 360; a += 6) {
+  for (let a = 0; a < 360; a += 30) {
     let angle = radians(a);
     let x = cx + cos(angle) * secondsRadius;
     let y = cy + sin(angle) * secondsRadius;
@@ -70,7 +130,7 @@ function draw() {
   textSize(32);
   
   let  months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-	let monthName=months[month()];
+	let monthName=months[month()-1];
   let theDay = day();
   let theYear = year();
   let dateString = monthName + '\n' + theDay + '\n' + theYear
