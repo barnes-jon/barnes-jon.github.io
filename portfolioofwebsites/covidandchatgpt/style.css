@@ -63,3 +63,19 @@
   font-size: 7vh;
 }
 
+/* Style the buttons and text */
+button {
+  margin: 10px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+#text {
+  font-size: 24px;
+  color: #333;
+  margin: 10px;
+}
