@@ -1,1 +1,0 @@
-to makes images folder
