@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Rebecca!</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to top, #87CEEB, #FFFFFF);
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        h1 {
+            color: #228B22;
+            font-size: 3em;
+            margin: 0;
+        }
+        p {
+            font-size: 1.5em;
+            color: #333;
+        }
+        #plants {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .plant {
+            position: absolute;
+            bottom: -100px;
+            width: 20px;
+            height: 100px;
+            background: linear-gradient(to top, #228B22, #90EE90);
+            border-radius: 0 0 10px 10px;
+            animation: grow 5s linear infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .flower {
+            position: absolute;
+            bottom: 100%;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #FF6347, #FFD700);
+            border-radius: 50%;
+            box-shadow: 0 0 5px #FF6347;
+            animation: bloom 2s ease-in-out infinite;
+        }
+        .cloud {
+            position: absolute;
+            background: #FFFFFF;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            opacity: 0.8;
+            z-index: 0;
+        }
+        @keyframes grow {
+            from {
+                height: 0;
+                bottom: -100px;
+            }
+            to {
+                height: 100px;
+                bottom: 0;
+            }
+        }
+        @keyframes bloom {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+        }
+        @keyframes float {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        .cloud1 {
+            width: 150px;
+            height: 100px;
+            top: 5%;
+            left: -150px;
+            animation: float 2s linear infinite;
+        }
+        .cloud2 {
+            width: 200px;
+            height: 120px;
+            top: 15%;
+            left: -200px;
+            animation: float 3s linear infinite;
+        }
+        .cloud3 {
+            width: 180px;
+            height: 110px;
+            top: 25%;
+            left: -180px;
+            animation: float 5s linear infinite;
+        }
+        .cloud4 {
+            width: 160px;
+            height: 100px;
+            top: 35%;
+            left: -160px;
+            animation: float 5s linear infinite;
+        }
+        .cloud5 {
+            width: 140px;
+            height: 90px;
+            top: 45%;
+            left: -140px;
+            animation: float 7s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Happy Birthday, Rebecca!</h1>
+        <p>Wishing you a day filled with happiness, laughter, and all the things that make you happiest. Here’s to a fabulous birthday and a year full of adventure and joy. Happy Birthday, Rebecca!</p>
+    </div>
+
+    <div id="plants"></div>
+    
+    <!-- Cloud Elements -->
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+    <div class="cloud cloud4"></div>
+    <div class="cloud cloud5"></div>
+
+    <script>
+        function random(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function createPlant() {
+            const plant = document.createElement('div');
+            plant.className = 'plant';
+            
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            plant.appendChild(flower);
+            
+            plant.style.left = `${random(0, window.innerWidth - 20)}px`;
+            document.getElementById('plants').appendChild(plant);
+            
+            // Remove plant after animation ends
+            plant.addEventListener('animationend', () => {
+                plant.remove();
+            });
+        }
+
+        setInterval(createPlant, 1000);
+    </script>
+</body>
+</html>
