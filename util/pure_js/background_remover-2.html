@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Background Removal Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        canvas {
+            border: 1px solid black;
+            margin-top: 10px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.5.2/pixi.min.js"></script>
+</head>
+<body>
+    <h1>Advanced Background Removal Example</h1>
+    <input type="file" id="fileInput">
+    <br>
+    <canvas id="canvas"></canvas>
+    <br>
+    <button id="downloadBtn" style="display: none;">Download Image Without Background</button>
+
+    <script>
+        document.getElementById('fileInput').addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+                const imgElement = new Image();
+                imgElement.onload = () => {
+                    const canvas = document.getElementById('canvas');
+                    const app = new PIXI.Application({ 
+                        view: canvas,
+                        width: imgElement.width, 
+                        height: imgElement.height, 
+                        backgroundAlpha: 0 
+                    });
+
+                    const texture = PIXI.Texture.from(imgElement.src);
+                    const sprite = new PIXI.Sprite(texture);
+
+                    const graphics = new PIXI.Graphics();
+                    graphics.beginFill(0xffffff);
+                    graphics.drawRect(0, 0, imgElement.width, imgElement.height);
+                    graphics.endFill();
+
+                    app.stage.addChild(sprite);
+                    app.stage.addChild(graphics);
+
+                    // Set the mask to be the graphic we just drew
+                    sprite.mask = graphics;
+
+                    // Adjust threshold here
+                    const threshold = 100;
+
+                    // Remove background based on color similarity
+                    app.renderer.plugins.extract.canvas(app.stage).getContext('2d').getImageData(0, 0, imgElement.width, imgElement.height).data.forEach((value, index, data) => {
+                        if (index % 4 === 3) return; // Skip alpha channel
+                        const r = data[index];
+                        const g = data[index + 1];
+                        const b = data[index + 2];
+                        const isBackground = Math.abs(r - 255) < threshold && Math.abs(g - 255) < threshold && Math.abs(b - 255) < threshold;
+                        if (isBackground) {
+                            data[index + 3] = 0; // Set alpha to 0
+                        }
+                    });
+
+                    const newCanvas = app.renderer.plugins.extract.canvas(app.stage);
+                    const ctx = newCanvas.getContext('2d');
+                    const imageData = ctx.getImageData(0, 0, newCanvas.width, newCanvas.height);
+                    ctx.putImageData(imageData, 0, 0);
+
+                    // Show the download button
+                    document.getElementById('downloadBtn').style.display = 'inline';
+
+                    // Download button event
+                    document.getElementById('downloadBtn').addEventListener('click', () => {
+                        const link = document.createElement('a');
+                        link.href = newCanvas.toDataURL('image/png');
+                        link.download = 'image_without_background.png';
+                        link.click();
+                    });
+                }
+                imgElement.src = e.target.result;
+            }
+
+            reader.readAsDataURL(file);
+        });
+    </script>
+</body>
+</html>
