@@ -113,7 +113,8 @@ function showInfo(e) {
     if (document.getElementById('infoBtn').classList.contains('active')) {
         var layer = e.target;
         var properties = layer.feature.properties;
-        var popupContent = '<h4>Land Ownership Information</h4>';
+        var popupContent = '<div style="background-color:white; padding:10px;">';
+        popupContent += '<h4>Land Ownership Information</h4>';
         
         popupContent += '<table style="width:100%; table-layout:auto; border-collapse:collapse;">';
         popupContent += '<tr>';
@@ -128,6 +129,7 @@ function showInfo(e) {
         }
         
         popupContent += '</tr></table>';
+        popupContent += '</div>';
         
         layer.bindPopup(popupContent).openPopup();
     }
