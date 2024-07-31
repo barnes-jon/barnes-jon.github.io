@@ -48,6 +48,8 @@
     }
     .leaflet-popup-content {
         white-space: normal; /* Allow content to wrap */
+        max-height: 200px; /* Set a maximum height */
+        overflow-y: auto; /* Add vertical scrollbar if content exceeds max-height */
     }
     .leaflet-popup-content-wrapper {
         overflow: visible !important; /* Ensure the popup expands to fit the content */
@@ -134,8 +136,8 @@ function showInfo(e) {
             if (key.toLowerCase() === "path") {
                 continue; // Skip the "path:" attribute
             }
-            if (count > 0 && count % 10 === 0) {
-                popupContent += '</tr><tr>'; // Start a new row after every 10 items
+            if (count > 0 && count % 3 === 0) {
+                popupContent += '</tr><tr>'; // Start a new row after every 3 items
             }
             popupContent += '<td style="padding:5px; border:1px solid #ddd;"><strong>' + key + ':</strong> ' + properties[key] + '</td>';
             count++;
