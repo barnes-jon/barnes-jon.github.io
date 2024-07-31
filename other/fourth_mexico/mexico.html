@@ -115,14 +115,15 @@ function showInfo(e) {
         var properties = layer.feature.properties;
         var popupContent = '<h4>Land Ownership Information</h4>';
         
-        popupContent += '<table style="width:100%; table-layout:fixed;"><tr>';
+        popupContent += '<table style="width:100%; table-layout:auto; border-collapse:collapse;">';
+        popupContent += '<tr>';
         var count = 0;
         
         for (var key in properties) {
-            if (count > 0 && count % 5 === 0) {
-                popupContent += '</tr><tr>'; // Start a new row after every 5 items
+            if (count > 0 && count % 10 === 0) {
+                popupContent += '</tr><tr>'; // Start a new row after every 10 items
             }
-            popupContent += '<td><strong>' + key + ':</strong> ' + properties[key] + '</td>';
+            popupContent += '<td style="padding:5px; border:1px solid #ddd;"><strong>' + key + ':</strong> ' + properties[key] + '</td>';
             count++;
         }
         
