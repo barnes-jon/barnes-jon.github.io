@@ -6,7 +6,7 @@
     <title>Sonora Land Ownership Map</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
-   <style>
+<style>
     body, html {
         margin: 0;
         padding: 0;
@@ -47,28 +47,16 @@
         display: none;
     }
     .leaflet-popup-content {
-        white-space: normal;
-        max-height: 200px;
-        overflow-y: auto;
+        white-space: normal; /* Allow content to wrap */
+        max-height: 200px; /* Set a maximum height */
+        overflow-y: auto; /* Add vertical scrollbar if content exceeds max-height */
     }
     .leaflet-popup-content-wrapper {
-        overflow: visible !important;
-        width: auto !important;
-        resize: both; /* Allow resizing */
-        min-width: 150px;
-        min-height: 150px;
+        overflow: visible !important; /* Ensure the popup expands to fit the content */
+        width: auto !important; /* Remove any fixed width constraints */
     }
-    .leaflet-popup-content-wrapper:after {
-        content: ' ';
-        display: block;
-        width: 16px;
-        height: 16px;
-        position: absolute;
-        bottom: 1px;
-        right: 1px;
-        cursor: se-resize;
-        background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMEwxNiAxNkgxNC4yTDguMjQgMTAuMjRMNiA4TDQuNzYgNy43MkwxNiAwSDBaTTEgMTFMMTAgMUwxMSAxVjBDOS4zMSAwLjAxMDEwMiA3LjQ4MjYyIDAuMDEwMTAyIDUgMC4wMTAxMDJWNDMuMjRMMy43NiA2VjcuMDAwMDYzMkw1LjQ4Njk3IDguMjg0MTJMMTQuMDAwMyAxNiAwLjAwMTAyMFYxWiIgZmlsbD0iIzAwMDAwMCIvPgo8L3N2Zz4K') no-repeat;
-        background-size: 16px 16px;
+    .leaflet-popup-tip {
+        display: none; /* Optionally hide the popup tip */
     }
 </style>
 </head>
