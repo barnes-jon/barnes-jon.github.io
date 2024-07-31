@@ -131,8 +131,11 @@ function showInfo(e) {
         var count = 0;
         
         for (var key in properties) {
-            if (count > 0 && count % 8 === 0) {
-                popupContent += '</tr><tr>'; // Start a new row after every 8 items
+            if (key.toLowerCase() === "path") {
+                continue; // Skip the "path:" attribute
+            }
+            if (count > 0 && count % 10 === 0) {
+                popupContent += '</tr><tr>'; // Start a new row after every 10 items
             }
             popupContent += '<td style="padding:5px; border:1px solid #ddd;"><strong>' + key + ':</strong> ' + properties[key] + '</td>';
             count++;
