@@ -7,46 +7,56 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: Arial, sans-serif;
-        }
-        #map {
-            height: calc(100% - 50px);
-            width: 100%;
-        }
-        #controls {
-            height: 50px;
-            background-color: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .control-btn {
-            margin: 0 10px;
-            padding: 5px 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        .control-btn.active {
-            background-color: #45a049;
-        }
-        #error-message {
-            position: absolute;
-            top: 60px;
-            left: 10px;
-            z-index: 1000;
-            background-color: rgba(255, 0, 0, 0.7);
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            display: none;
-        }
-    </style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: Arial, sans-serif;
+    }
+    #map {
+        height: calc(100% - 50px);
+        width: 100%;
+    }
+    #controls {
+        height: 50px;
+        background-color: #f0f0f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .control-btn {
+        margin: 0 10px;
+        padding: 5px 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    .control-btn.active {
+        background-color: #45a049;
+    }
+    #error-message {
+        position: absolute;
+        top: 60px;
+        left: 10px;
+        z-index: 1000;
+        background-color: rgba(255, 0, 0, 0.7);
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        display: none;
+    }
+    .leaflet-popup-content {
+        white-space: normal; /* Allow content to wrap */
+    }
+    .leaflet-popup-content-wrapper {
+        overflow: visible !important; /* Ensure the popup expands to fit the content */
+        width: auto !important; /* Remove any fixed width constraints */
+    }
+    .leaflet-popup-tip {
+        display: none; /* Optionally hide the popup tip */
+    }
+</style>
 </head>
 <body>
     <div id="controls">
