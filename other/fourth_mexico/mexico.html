@@ -136,8 +136,8 @@ function showInfo(e) {
             if (key.toLowerCase() === "path") {
                 continue; // Skip the "path:" attribute
             }
-            if (count > 0 && count % 3 === 0) {
-                popupContent += '</tr><tr>'; // Start a new row after every 3 items
+            if (count > 0 && count % 2 === 0) {
+                popupContent += '</tr><tr>'; // Start a new row after every 2 items
             }
             popupContent += '<td style="padding:5px; border:1px solid #ddd;"><strong>' + key + ':</strong> ' + properties[key] + '</td>';
             count++;
