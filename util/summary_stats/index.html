@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Statistics Calculator</h1>
+        <p>Enter a series of numbers separated by commas:</p>
+        <input type="text" id="numbers" placeholder="e.g., 1, 2, 3, 4, 5">
+        <button onclick="calculateStats()">Calculate</button>
+
+        <div id="results">
+            <p><strong>Mean:</strong> <span id="mean"></span></p>
+            <p><strong>Median:</strong> <span id="median"></span></p>
+            <p><strong>Mode:</strong> <span id="mode"></span></p>
+            <p><strong>Standard Deviation:</strong> <span id="stdDev"></span></p>
+            <p><strong>Range:</strong> <span id="range"></span></p>
+            <p><strong>Skewness:</strong> <span id="skewness"></span></p>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
