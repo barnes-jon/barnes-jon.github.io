@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Largest 100 Earthquakes in Last 10 Years</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+        #map {
+            width: 100%;
+            height: 80%;
+        }
+        #info {
+            padding: 10px;
+            background-color: #f0f0f0;
+            height: 20%;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <div id="info">
+        <h2>Largest 100 Earthquakes in Last 10 Years</h2>
+        <p>Click on a marker to see more information.</p>
+    </div>
+    <script>
+        // Initialize the map
+        const map = L.map('map').setView([0, 0], 2);
+
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Calculate the date 10 years ago
+        const tenYearsAgo = new Date();
+        tenYearsAgo.setFullYear(tenYearsAgo.getFullYear() - 10);
+        const startTime = tenYearsAgo.toISOString();
+
+        // Function to update info panel
+        function updateInfo(message) {
+            document.getElementById('info').innerHTML += `<p>${message}</p>`;
+        }
+
+        // Fetch earthquake data from USGS
+        updateInfo('Fetching earthquake data...');
+        fetch(`https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=${startTime}&orderby=magnitude&limit=100`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                updateInfo(`Received data. Processing ${data.features.length} earthquakes...`);
+                if (data.features.length === 0) {
+                    throw new Error('No earthquake data received');
+                }
+                data.features.forEach((feature, index) => {
+                    const coords = feature.geometry.coordinates;
+                    const magnitude = feature.properties.mag;
+                    const place = feature.properties.place;
+                    const time = new Date(feature.properties.time).toLocaleString();
+
+                    // Create a circle marker for each earthquake
+                    L.circleMarker([coords[1], coords[0]], {
+                        radius: magnitude * 2,
+                        fillColor: '#ff7800',
+                        color: '#000',
+                        weight: 1,
+                        opacity: 1,
+                        fillOpacity: 0.8
+                    }).addTo(map).bindPopup(`
+                        <strong>Magnitude:</strong> ${magnitude}<br>
+                        <strong>Location:</strong> ${place}<br>
+                        <strong>Time:</strong> ${time}
+                    `);
+
+                    if (index === 0) {
+                        updateInfo(`First earthquake plotted at [${coords[1]}, ${coords[0]}]`);
+                    }
+                });
+
+                updateInfo(`Finished plotting ${data.features.length} earthquakes.`);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                updateInfo(`Error: ${error.message}. Check console for more details.`);
+            });
+    </script>
+</body>
+</html>
