@@ -39,9 +39,21 @@ function style(feature) {
     };
 }
 
+// Define a function to handle feature clicks
+function onEachFeature(feature, layer) {
+    if (feature.properties && feature.properties.MapUnit) {
+        layer.on('click', function () {
+            layer.bindPopup('MapUnit: ' + feature.properties.MapUnit).openPopup();
+        });
+    }
+}
+
 // Load GeoJSON data
 fetch('sw_nm_geology.geojson')
     .then(response => response.json())
     .then(data => {
-        L.geoJson(data, { style: style }).addTo(map);
+        L.geoJson(data, {
+            style: style,
+            onEachFeature: onEachFeature
+        }).addTo(map);
     });
