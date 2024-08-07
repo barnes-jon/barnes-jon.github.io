@@ -8,8 +8,11 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // Function to determine circle size based on population
 function getCircleSize(population) {
-    return Math.sqrt(population) * 0.08; // Adjust multiplier as needed
+    return Math.sqrt(population) * 100; // Adjust multiplier as needed for visibility
 }
+
+// Sort cities by population in descending order
+cities.sort((a, b) => b.population - a.population);
 
 // Add city circles to the map
 cities.forEach(city => {
