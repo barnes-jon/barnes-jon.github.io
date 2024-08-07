@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Mexico Habitat Map</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <style>
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+        .info {
+            padding: 6px 8px;
+            font: 14px/16px Arial, Helvetica, sans-serif;
+            background: white;
+            background: rgba(255,255,255,0.8);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+        }
+        .info h4 {
+            margin: 0 0 5px;
+            color: #777;
+        }
+        .legend {
+            line-height: 18px;
+            color: #555;
+        }
+        .legend i {
+            width: 18px;
+            height: 18px;
+            float: left;
+            margin-right: 8px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+    <script>
+        var map = L.map('map').setView([34.5199, -105.8701], 7);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var countiesLayer = new L.GeoJSON.AJAX("new_mexico_counties.geojson", {
+            style: function(feature) {
+                return {
+                    color: "#999",
+                    weight: 1,
+                    fillColor: "#f2f2f2",
+                    fillOpacity: 0.3
+                };
+            },
+            onEachFeature: function(feature, layer) {
+                if (feature.properties && feature.properties.NAME) {
+                    layer.bindPopup(feature.properties.NAME);
+                }
+            }
+        }).addTo(map);
+
+        var watershedsLayer = new L.GeoJSON.AJAX("black_range_watersheds.geojson", {
+            style: function(feature) {
+                return {
+                    color: "#00008B",
+                    weight: 2,
+                    fillColor: "transparent",
+                    fillOpacity: 0
+                };
+            }
+        }).addTo(map);
+
+        var colorMap = {};
+        var colorScale = [
+            "#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", 
+            "#ffd92f", "#e5c494", "#b3b3b3", "#8dd3c7", "#ffffb3", 
+            "#bebada", "#fb8072", "#80b1d3", "#fdb462", "#b3de69"
+        ];
+
+        function getColor(name) {
+            if (!colorMap[name]) {
+                colorMap[name] = colorScale[Object.keys(colorMap).length % colorScale.length];
+            }
+            return colorMap[name];
+        }
+
+        var habitatLayer = new L.GeoJSON.AJAX("habitat.geojson", {
+            style: function(feature) {
+                return {
+                    color: "#000",
+                    weight: 1,
+                    fillColor: getColor(feature.properties.US_L4NAME),
+                    fillOpacity: 0.7
+                };
+            },
+            onEachFeature: function(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlight,
+                    click: zoomToFeature
+                });
+            }
+        }).addTo(map);
+
+        function highlightFeature(e) {
+            var layer = e.target;
+            layer.setStyle({
+                weight: 3,
+                color: '#666',
+                dashArray: '',
+                fillOpacity: 0.9
+            });
+            if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                layer.bringToFront();
+            }
+            info.update(layer.feature.properties);
+        }
+
+        function resetHighlight(e) {
+            habitatLayer.resetStyle(e.target);
+            info.update();
+        }
+
+        function zoomToFeature(e) {
+            map.fitBounds(e.target.getBounds());
+        }
+
+        var info = L.control();
+
+        info.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'info');
+            this.update();
+            return this._div;
+        };
+
+        info.update = function (props) {
+            this._div.innerHTML = '<h4>US Level 4 Ecoregion</h4>' +  (props ?
+                '<b>' + props.US_L4NAME + '</b><br />' + props.NA_L3NAME
+                : 'Hover over a habitat');
+        };
+
+        info.addTo(map);
+
+        var legend = L.control({position: 'bottomright'});
+
+        legend.onAdd = function (map) {
+            var div = L.DomUtil.create('div', 'info legend');
+            var labels = [];
+
+            for (var name in colorMap) {
+                labels.push(
+                    '<i style="background:' + colorMap[name] + '"></i> ' + name);
+            }
+
+            div.innerHTML = labels.join('<br>');
+            return div;
+        };
+
+        // Ensure proper layer order
+        watershedsLayer.bringToFront();
+        habitatLayer.bringToFront();
+
+        habitatLayer.on('data:loaded', function() {
+            legend.addTo(map);
+        });
+    </script>
+</body>
+</html>
