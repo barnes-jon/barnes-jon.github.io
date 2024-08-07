@@ -6,15 +6,25 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-// Define a function to get color based on MapUnit
-function getColor(mapUnit) {
-    switch (mapUnit) {
-        case 'Unit1': return '#ff0000';
-        case 'Unit2': return '#00ff00';
-        case 'Unit3': return '#0000ff';
-        // Add more cases as needed
-        default: return '#ffffff';
+// Function to generate a random color
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
     }
+    return color;
+}
+
+// Object to store colors for each MapUnit
+var mapUnitColors = {};
+
+// Function to get color based on MapUnit
+function getColor(mapUnit) {
+    if (!mapUnitColors[mapUnit]) {
+        mapUnitColors[mapUnit] = getRandomColor();
+    }
+    return mapUnitColors[mapUnit];
 }
 
 // Define a function to style each feature
