@@ -45,11 +45,26 @@
         tenYearsAgo.setFullYear(tenYearsAgo.getFullYear() - 10);
         const startTime = tenYearsAgo.toISOString();
 
+        // Function to update info panel
+        function updateInfo(message) {
+            document.getElementById('info').innerHTML += `<p>${message}</p>`;
+        }
+
         // Fetch earthquake data from USGS
+        updateInfo('Fetching earthquake data...');
         fetch(`https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=${startTime}&orderby=magnitude&limit=100`)
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
-                data.features.forEach(feature => {
+                updateInfo(`Received data. Processing ${data.features.length} earthquakes...`);
+                if (data.features.length === 0) {
+                    throw new Error('No earthquake data received');
+                }
+                data.features.forEach((feature, index) => {
                     const coords = feature.geometry.coordinates;
                     const magnitude = feature.properties.mag;
                     const place = feature.properties.place;
@@ -68,12 +83,18 @@
                         <strong>Location:</strong> ${place}<br>
                         <strong>Time:</strong> ${time}
                     `);
+
+                    if (index === 0) {
+                        updateInfo(`First earthquake plotted at [${coords[1]}, ${coords[0]}]`);
+                    }
                 });
 
-                // Update info panel with earthquake count
-                document.getElementById('info').innerHTML += `<p>Showing ${data.features.length} earthquakes.</p>`;
+                updateInfo(`Finished plotting ${data.features.length} earthquakes.`);
             })
-            .catch(error => console.error('Error fetching earthquake data:', error));
+            .catch(error => {
+                console.error('Error:', error);
+                updateInfo(`Error: ${error.message}. Check console for more details.`);
+            });
     </script>
 </body>
 </html>
