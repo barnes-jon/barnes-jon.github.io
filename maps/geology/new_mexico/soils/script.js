@@ -42,7 +42,7 @@ function onEachFeature(feature, layer) {
 }
 
 // Load the GeoJSON file and add it to the map
-fetch('hillsboro_kingston_soil_map_large.geojson')
+fetch('soils_silver_city_deming_t_or_c.geojson')
     .then(response => response.json())
     .then(data => {
         L.geoJSON(data, {
