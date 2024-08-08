@@ -35,12 +35,10 @@ function styleFeature(feature) {
     };
 }
 
-// Function to handle clicks on the map
+// Function to handle clicks on the map using bindPopup
 function onEachFeature(feature, layer) {
-    layer.on('click', function (e) {
-        var mukey = feature.properties.MUKEY;
-        alert("MUKEY: " + mukey);
-    });
+    var mukey = feature.properties.MUKEY;
+    layer.bindPopup("MUKEY: " + mukey);
 }
 
 // Load the GeoJSON file and add it to the map
