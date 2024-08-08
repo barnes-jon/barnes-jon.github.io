@@ -17,7 +17,7 @@ fetch('black_range_peaks.geojson')
                         iconUrl: 'mountain_icon.jpg',
                         iconSize: [32, 32]
                     })
-                });
+                }).bindPopup(feature.properties.name);
             }
         }).addTo(map);
     });
