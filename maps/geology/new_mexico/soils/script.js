@@ -35,11 +35,20 @@ function styleFeature(feature) {
     };
 }
 
+// Function to handle clicks on the map
+function onEachFeature(feature, layer) {
+    layer.on('click', function (e) {
+        var mukey = feature.properties.MUKEY;
+        alert("MUKEY: " + mukey);
+    });
+}
+
 // Load the GeoJSON file and add it to the map
 fetch('hillsboro_kingston_soil_map_large.geojson')
     .then(response => response.json())
     .then(data => {
         L.geoJSON(data, {
-            style: styleFeature
+            style: styleFeature,
+            onEachFeature: onEachFeature
         }).addTo(map);
     });
