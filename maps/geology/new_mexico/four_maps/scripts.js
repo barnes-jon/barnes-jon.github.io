@@ -52,7 +52,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map3);
 
-fetch('hillsboro_kingston_soil_map_large.geojson')
+fetch('silver_city_to_hillsboro_soils.geojson')
     .then(response => response.json())
     .then(data => {
         L.geoJSON(data, {
