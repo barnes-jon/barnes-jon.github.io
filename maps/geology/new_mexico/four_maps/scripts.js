@@ -66,7 +66,7 @@ fetch('soils_silver_city_deming_t_or_c.geojson')
                 };
             },
             onEachFeature: function(feature, layer) {
-                layer.bindPopup(feature.properties.mukey);
+                layer.bindPopup(feature.properties.MUKEY);
             }
         }).addTo(map3);
     })
