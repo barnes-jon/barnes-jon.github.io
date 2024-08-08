@@ -63,7 +63,9 @@ fetch('soils_silver_city_deming_t_or_c.geojson')
                     opacity: 1,
                     color: 'white',
                     fillOpacity: 0.7
-                };
+                };,
+            onEachFeature: function(feature, layer) {
+                layer.bindPopup(feature.properties.mukey);
             }
         }).addTo(map3);
     })
