@@ -3,6 +3,7 @@ var map1 = L.map('map1').setView([33.18452, -107.84115], 10);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map1);
+
 fetch('black_range_watershed.geojson')
     .then(response => response.json())
     .then(data => {
@@ -15,13 +16,15 @@ fetch('black_range_watershed.geojson')
                 };
             }
         }).addTo(map1);
-    });
+    })
+    .catch(error => console.error('Error loading black_range_watershed.geojson:', error));
 
 // Map 2 - Habitat
 var map2 = L.map('map2').setView([33.18452, -107.84115], 10);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map2);
+
 fetch('habitat.geojson')
     .then(response => response.json())
     .then(data => {
@@ -40,13 +43,15 @@ fetch('habitat.geojson')
                 layer.bindPopup(feature.properties.US_L4NAME);
             }
         }).addTo(map2);
-    });
+    })
+    .catch(error => console.error('Error loading habitat.geojson:', error));
 
 // Map 3 - Soil Type
 var map3 = L.map('map3').setView([32.914, -107.587], 10);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map3);
+
 fetch('soil_type.geojson')
     .then(response => response.json())
     .then(data => {
@@ -61,13 +66,15 @@ fetch('soil_type.geojson')
                 };
             }
         }).addTo(map3);
-    });
+    })
+    .catch(error => console.error('Error loading soil_type.geojson:', error));
 
 // Map 4 - Geologic Rock Type
 var map4 = L.map('map4').setView([32.0, -107.0], 7);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map4);
+
 fetch('sw_nm_geology.geojson')
     .then(response => response.json())
     .then(data => {
@@ -90,7 +97,8 @@ fetch('sw_nm_geology.geojson')
                 }
             }
         }).addTo(map4);
-    });
+    })
+    .catch(error => console.error('Error loading sw_nm_geology.geojson:', error));
 
 // Function to generate a random color
 function getRandomColor() {
