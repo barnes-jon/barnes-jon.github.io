@@ -12,12 +12,14 @@ fetch('black_range_peaks.geojson')
     .then(data => {
         L.geoJSON(data, {
             pointToLayer: function (feature, latlng) {
+                console.log(feature.properties); // Log properties to check the available keys
+                let popupContent = feature.properties.Name ? feature.properties.Name : "No name available";
                 return L.marker(latlng, {
                     icon: L.icon({
                         iconUrl: 'mountain_icon.jpg',
                         iconSize: [32, 32]
                     })
-                }).bindPopup(feature.properties.Name);
+                }).bindPopup(popupContent); // Ensure this matches the property in your GeoJSON
             }
         }).addTo(map);
     });
